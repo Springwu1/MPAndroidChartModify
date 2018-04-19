@@ -6,16 +6,16 @@ github地址 https://github.com/gogooing/KLineChartDemo
 
 KLineChartDemo的效果
 
-![截图](https://github.com/Springwu1/MPAndroidChartModify/tree/Screenshot/screenshot1.gif)
-![截图](https://github.com/Springwu1/MPAndroidChartModify/tree/Screenshot/screenshot2.gif)
-![截图](https://github.com/Springwu1/MPAndroidChartModify/tree/Screenshot/screenshot3.gif)
-![截图](https://github.com/Springwu1/MPAndroidChartModify/tree/Screenshot/screenshot4.gif)
-![截图](https://github.com/Springwu1/MPAndroidChartModify/tree/master/Screenshot/screenshot5.gif)
-![截图](https://github.com/Springwu1/MPAndroidChartModify/tree/master/Screenshot/screenshot6.gif)
+![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot1.gif)
+![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot2.gif)
+![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot3.gif)
+![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot4.gif)
+![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot5.gif)
+![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot6.gif)
 
 修改后的效果图
 
-![截图](https://github.com/gogooing/KLineChartDemo/blob/master/Screenshot/screenshot7.gif)
+![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot7.gif)
 
 
 
