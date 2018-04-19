@@ -1,6 +1,8 @@
 # 参考 KLineChartDemo  实现项目中需要的K线图
 github地址 https://github.com/gogooing/KLineChartDemo
+
 实际是对 MPAndroidChart（https://github.com/PhilJay/MPAndroidChart）源码做了一些修改，实现多表的联动
+
 源码修改说明文档地址  https://blog.csdn.net/qqyanjiang/article/details/51580629
 
 
