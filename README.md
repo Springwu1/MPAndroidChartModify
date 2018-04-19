@@ -11,7 +11,7 @@ KLineChartDemo的效果
 ![截图](https://github.com/gogooing/KLineChartDemo/blob/master/Screenshot/screenshot3.gif)
 ![截图](https://github.com/gogooing/KLineChartDemo/blob/master/Screenshot/screenshot4.gif)
 ![截图](https://github.com/gogooing/KLineChartDemo/blob/master/Screenshot/screenshot5.gif)
-![截图](https://github.com/gogooing/KLineChartDemo/blob/master/Screenshot/screenshot6.gif)
+![截图](https://github.com/gogooing/MPAndroidChartModify/blob/master/Screenshot/screenshot6.gif)
 
 修改后的效果图
 
