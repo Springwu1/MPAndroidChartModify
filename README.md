@@ -5,6 +5,9 @@ github地址 https://github.com/gogooing/KLineChartDemo
 
 源码修改说明文档地址  https://blog.csdn.net/qqyanjiang/article/details/51580629
 
+修改后的效果图
+
+![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot7.gif)
 
 KLineChartDemo的效果
 
@@ -15,9 +18,6 @@ KLineChartDemo的效果
 ![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot5.gif)
 ![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot6.gif)
 
-修改后的效果图
-
-![截图](https://github.com/Springwu1/MPAndroidChartModify/blob/master/Screenshot/screenshot7.gif)
 
 
 
