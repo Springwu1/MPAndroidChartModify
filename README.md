@@ -1,8 +1,10 @@
-# KLineChartDemo
-K Line Stock Chart which base on MPAndroidChart
+# 参考 KLineChartDemo  实现项目中需要的K线图
+github地址 https://github.com/gogooing/KLineChartDemo
+实际是对 MPAndroidChart（https://github.com/PhilJay/MPAndroidChart）源码做了一些修改，实现多表的联动
+源码修改说明文档地址  https://blog.csdn.net/qqyanjiang/article/details/51580629
 
-使用了MPAndroidChart库实现了类似于同花顺效果的K线图股票应用！
-实现了常用的几种股票指标，均是用java代码实现，欢迎修改更正！
+
+KLineChartDemo的效果
 
 ![截图](https://github.com/gogooing/KLineChartDemo/blob/master/Screenshot/screenshot1.gif)
 ![截图](https://github.com/gogooing/KLineChartDemo/blob/master/Screenshot/screenshot2.gif)
@@ -11,8 +13,11 @@ K Line Stock Chart which base on MPAndroidChart
 ![截图](https://github.com/gogooing/KLineChartDemo/blob/master/Screenshot/screenshot5.gif)
 ![截图](https://github.com/gogooing/KLineChartDemo/blob/master/Screenshot/screenshot6.gif)
 
+修改后的效果图
 
-国庆要到了，下次更新应该会在国庆之后，大家国庆中秋快乐！！
+![截图](https://github.com/gogooing/KLineChartDemo/blob/master/Screenshot/screenshot7.gif)
 
-如有疑问欢迎加QQ群：489231484
+
+
+如有疑问欢迎到我邮箱留言：wujiangmingspring@163.com
 
