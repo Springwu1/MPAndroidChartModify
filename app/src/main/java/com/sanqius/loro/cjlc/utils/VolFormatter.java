@@ -1,6 +1,8 @@
 package com.sanqius.loro.cjlc.utils;
 
 
+import android.util.Log;
+
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.formatter.YAxisValueFormatter;
 
@@ -25,6 +27,7 @@ public class VolFormatter implements YAxisValueFormatter {
 
     @Override
     public String getFormattedValue(float value, YAxis yAxis) {
+        Log.i("ttt", "getFormattedValue: "+value);
         value = value / unit;
         if (value == 0) {
             return u;

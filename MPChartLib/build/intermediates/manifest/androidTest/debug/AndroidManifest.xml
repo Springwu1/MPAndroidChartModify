@@ -13,7 +13,7 @@
         android:label="Tests for com.github.mikephil.charting.test"
         android:targetPackage="com.github.mikephil.charting.test" />
 
-    <application>
+    <application android:debuggable="true" >
         <uses-library android:name="android.test.runner" />
     </application>
 

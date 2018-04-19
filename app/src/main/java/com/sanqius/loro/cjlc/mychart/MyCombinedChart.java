@@ -3,10 +3,13 @@ package com.sanqius.loro.cjlc.mychart;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+import android.view.View;
 
 import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.sanqius.loro.cjlc.R;
 import com.sanqius.loro.cjlc.bean.DataParse;
 
 /**
@@ -16,6 +19,7 @@ public class MyCombinedChart extends CombinedChart {
     private MyLeftMarkerView myMarkerViewLeft;
     private MyHMarkerView myMarkerViewH;
     private MyBottomMarkerView myBottomMarkerView;
+    private ContentMarkerView myContentMarkerView;
     private DataParse minuteHelper;
 
     public MyCombinedChart(Context context) {
@@ -31,7 +35,7 @@ public class MyCombinedChart extends CombinedChart {
     }
 
     public void setMarker(MyLeftMarkerView markerLeft, MyHMarkerView markerH, DataParse minuteHelper) {
-        this.myMarkerViewLeft = markerLeft;
+//        this.myMarkerViewLeft = markerLeft;
         this.myMarkerViewH = markerH;
         this.minuteHelper = minuteHelper;
     }
@@ -47,6 +51,12 @@ public class MyCombinedChart extends CombinedChart {
         this.myBottomMarkerView = markerBottom;
         this.myMarkerViewH = markerH;
         this.minuteHelper = minuteHelper;
+    }
+
+    public void setMarker(ContentMarkerView contentMarkerView,MyHMarkerView markerH, DataParse minuteHelper) {
+        this.myMarkerViewH = markerH;
+        this.minuteHelper = minuteHelper;
+        this.myContentMarkerView = contentMarkerView;
     }
 
     @Override
@@ -110,7 +120,17 @@ public class MyCombinedChart extends CombinedChart {
                     myBottomMarkerView.draw(canvas, pos[0] - myBottomMarkerView.getWidth() / 2, mViewPortHandler.contentBottom());
                 }
 
+                if(null != myContentMarkerView){
+                    myContentMarkerView.refreshContent(e, mIndicesToHighlight[i]);
 
+                    myContentMarkerView.measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+                    myContentMarkerView.layout(0, 0, myContentMarkerView.getMeasuredWidth(),
+                            myContentMarkerView.getMeasuredHeight());
+
+                    myContentMarkerView.draw(canvas, pos[0] - myContentMarkerView.getWidth() / 2, mIndicesToHighlight[i].getTouchY() - myContentMarkerView.getHeight()/2);
+
+                }
             }
         }
     }

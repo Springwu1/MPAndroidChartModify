@@ -4,19 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!--android:background="@color/common_gray_bg"-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/common_gray_bg"
+        android:background="#323232"
         android:orientation="vertical"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingTop="3dp">
 
+        <!--android:background="@color/common_gray_bg"-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/common_gray_bg"
             android:orientation="vertical"
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
@@ -188,35 +189,35 @@
             android:layout_height="0dp"
             android:layout_weight="1"></com.sanqius.loro.cjlc.mychart.MyCombinedChart>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1">-->
 
-            <com.sanqius.loro.cjlc.mychart.MyCombinedChart
-                android:id="@+id/kline_chart_charts"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></com.sanqius.loro.cjlc.mychart.MyCombinedChart>
+            <!--<com.sanqius.loro.cjlc.mychart.MyCombinedChart-->
+                <!--android:id="@+id/kline_chart_charts"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"></com.sanqius.loro.cjlc.mychart.MyCombinedChart>-->
 
-            <ImageView
-                android:id="@+id/kline_iv_refresh"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/refresh" />
+            <!--<ImageView-->
+                <!--android:id="@+id/kline_iv_refresh"-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:src="@drawable/refresh" />-->
 
-            <TextView
-                android:id="@+id/kline_tv_entity"
-                android:layout_width="wrap_content"
-                android:textSize="@dimen/text_size_14sp"
-                android:text="@string/entity_macd"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color_common"/>
-        </RelativeLayout>
+            <!--<TextView-->
+                <!--android:id="@+id/kline_tv_entity"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:textSize="@dimen/text_size_14sp"-->
+                <!--android:text="@string/entity_macd"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@color/text_color_common"/>-->
+        <!--</RelativeLayout>-->
 
     </LinearLayout>
 

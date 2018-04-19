@@ -674,7 +674,6 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      * draws all MarkerViews on the highlighted positions
      */
     protected void drawMarkers(Canvas canvas) {
-
         // if there is no marker view or drawing marker is disabled
         if (mMarkerView == null || !mDrawMarkerViews || !valuesToHighlight())
             return;

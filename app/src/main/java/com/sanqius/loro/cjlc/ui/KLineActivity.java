@@ -1,5 +1,6 @@
 package com.sanqius.loro.cjlc.ui;
 
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ import com.sanqius.loro.cjlc.mychart.MyBottomMarkerView;
 import com.sanqius.loro.cjlc.mychart.MyCombinedChart;
 import com.sanqius.loro.cjlc.mychart.MyHMarkerView;
 import com.sanqius.loro.cjlc.mychart.MyLeftMarkerView;
+import com.sanqius.loro.cjlc.mychart.ContentMarkerView;
 import com.sanqius.loro.cjlc.utils.MyUtils;
 import com.sanqius.loro.cjlc.utils.VolFormatter;
 
@@ -68,6 +70,8 @@ public class KLineActivity extends AppCompatActivity {
     protected ImageView mIvRefresh;
     protected TextView mTvEntity;
 
+    int line_color = Color.rgb(112,112,115);
+
     //X轴标签的类
     protected XAxis xAxisKline, xAxisVolume, xAxisCharts;
     //Y轴左侧的线
@@ -90,15 +94,15 @@ public class KLineActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             mChartKline.setAutoScaleMinMaxEnabled(true);
             mChartVolume.setAutoScaleMinMaxEnabled(true);
-            mChartCharts.setAutoScaleMinMaxEnabled(true);
+//            mChartCharts.setAutoScaleMinMaxEnabled(true);
 
             mChartKline.notifyDataSetChanged();
             mChartVolume.notifyDataSetChanged();
-            mChartCharts.notifyDataSetChanged();
+//            mChartCharts.notifyDataSetChanged();
 
             mChartKline.invalidate();
             mChartVolume.invalidate();
-            mChartCharts.invalidate();
+//            mChartCharts.invalidate();
         }
     };
 
@@ -119,66 +123,66 @@ public class KLineActivity extends AppCompatActivity {
 
         initChartKline();
         initChartVolume();
-        initChartCharts();
+//        initChartCharts();
         setChartListener();
         initCharData();
 
         setKLineByChart(mChartKline);
         setVolumeByChart(mChartVolume);
-        setMACDByChart(mChartCharts);
+//        setMACDByChart(mChartCharts);
         isRefresh = false;
 //        setKDJByChart(mChartCharts);
 
-        mChartKline.moveViewToX(kLineDatas.size() - 1);
+        mChartKline.moveViewToX(kLineDatas.size() - 1);//将图移动 到底几个数据
         mChartVolume.moveViewToX(kLineDatas.size() - 1);
-        mChartCharts.moveViewToX(kLineDatas.size() - 1);
+//        mChartCharts.moveViewToX(kLineDatas.size() - 1);
 //        setOffset();
 
 
-        mIvRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                chartType++;
-                if (chartType > chartTypes) {
-                    chartType = 1;
-                }
-                String entity = getString(R.string.entity_macd);
-                switch (chartType) {
-                    case 1:
-                        entity = getString(R.string.entity_macd);
-                        setMACDByChart(mChartCharts);
-                        break;
-                    case 2:
-                        entity = getString(R.string.entity_kdj);
-                        setKDJByChart(mChartCharts);
-                        break;
-                    case 3:
-                        entity = getString(R.string.entity_wr);
-                        setWRByChart(mChartCharts);
-                        break;
-                    case 4:
-                        entity = getString(R.string.entity_rsi);
-                        setRSIByChart(mChartCharts);
-                        break;
-                    case 5:
-                        entity = getString(R.string.entity_boll);
-                        setBOLLByChart(mChartCharts);
-                        break;
-                    case 6:
-                        entity = getString(R.string.entity_expma);
-                        setEXPMAByChart(mChartCharts);
-                        break;
-                    case 7:
-                        entity = getString(R.string.entity_dmi);
-                        setDMIByChart(mChartCharts);
-                        break;
-                }
-
-                mChartCharts.invalidate();
-                mTvEntity.setText(entity);
-
-            }
-        });
+//        mIvRefresh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                chartType++;
+//                if (chartType > chartTypes) {
+//                    chartType = 1;
+//                }
+//                String entity = getString(R.string.entity_macd);
+//                switch (chartType) {
+//                    case 1:
+//                        entity = getString(R.string.entity_macd);
+//                        setMACDByChart(mChartCharts);
+//                        break;
+//                    case 2:
+//                        entity = getString(R.string.entity_kdj);
+//                        setKDJByChart(mChartCharts);
+//                        break;
+//                    case 3:
+//                        entity = getString(R.string.entity_wr);
+//                        setWRByChart(mChartCharts);
+//                        break;
+//                    case 4:
+//                        entity = getString(R.string.entity_rsi);
+//                        setRSIByChart(mChartCharts);
+//                        break;
+//                    case 5:
+//                        entity = getString(R.string.entity_boll);
+//                        setBOLLByChart(mChartCharts);
+//                        break;
+//                    case 6:
+//                        entity = getString(R.string.entity_expma);
+//                        setEXPMAByChart(mChartCharts);
+//                        break;
+//                    case 7:
+//                        entity = getString(R.string.entity_dmi);
+//                        setDMIByChart(mChartCharts);
+//                        break;
+//                }
+//
+//                mChartCharts.invalidate();
+//                mTvEntity.setText(entity);
+//
+//            }
+//        });
 
 
 
@@ -197,31 +201,32 @@ public class KLineActivity extends AppCompatActivity {
                 addKlineData();
                 addVolumeData();
 
-                switch (chartType) {
-                    case 1:
-                        setMACDByChart(mChartCharts);
-                        break;
-                    case 2:
-                        setKDJByChart(mChartCharts);
-                        break;
-                    case 3:
-                        setWRByChart(mChartCharts);
-                        break;
-                    case 4:
-                        setRSIByChart(mChartCharts);
-                        break;
-                    case 5:
-                        setBOLLByChart(mChartCharts);
-                        break;
-                    case 6:
-                        setEXPMAByChart(mChartCharts);
-                        break;
-                    case 7:
-                        setDMIByChart(mChartCharts);
-                        break;
-                }
+//                switch (chartType) {
+//                    case 1:
+//                        setMACDByChart(mChartCharts);
+//                        break;
+//                    case 2:
+//                        setKDJByChart(mChartCharts);
+//                        break;
+//                    case 3:
+//                        setWRByChart(mChartCharts);
+//                        break;
+//                    case 4:
+//                        setRSIByChart(mChartCharts);
+//                        break;
+//                    case 5:
+//                        setBOLLByChart(mChartCharts);
+//                        break;
+//                    case 6:
+//                        setEXPMAByChart(mChartCharts);
+//                        break;
+//                    case 7:
+//                        setDMIByChart(mChartCharts);
+//                        break;
+//                }
+                Log.i("ttt", "run: ");
 
-                mChartKline.setAutoScaleMinMaxEnabled(true);
+                mChartKline.setAutoScaleMinMaxEnabled(true);//表示是否启用y轴上的自动缩放的标志
                 mChartKline.notifyDataSetChanged();
 //                mChartKline.moveViewToX(kLineDatas.size() - 1);
                 mChartKline.invalidate();
@@ -231,10 +236,10 @@ public class KLineActivity extends AppCompatActivity {
 //                mChartVolume.moveViewToX(kLineDatas.size() - 1);
                 mChartVolume.invalidate();
 
-                mChartCharts.setAutoScaleMinMaxEnabled(true);
-                mChartCharts.notifyDataSetChanged();
-                mChartCharts.moveViewToX(0);
-                mChartCharts.invalidate();
+//                mChartCharts.setAutoScaleMinMaxEnabled(true);
+//                mChartCharts.notifyDataSetChanged();
+//                mChartCharts.moveViewToX(0);
+//                mChartCharts.invalidate();
 
                 handlerAdd.postDelayed(this, 10000);
             }
@@ -255,30 +260,33 @@ public class KLineActivity extends AppCompatActivity {
 
         mChartKline = (MyCombinedChart) findViewById(R.id.kline_chart_k);
         mChartVolume = (MyCombinedChart) findViewById(R.id.kline_chart_volume);
-        mChartCharts = (MyCombinedChart) findViewById(R.id.kline_chart_charts);
+//        mChartCharts = (MyCombinedChart) findViewById(R.id.kline_chart_charts);
 
         mTvKMa5 = (TextView) findViewById(R.id.view_kline_tv_ma5);
         mTvKMa10 = (TextView) findViewById(R.id.view_kline_tv_ma10);
         mTvKMa20 = (TextView) findViewById(R.id.view_kline_tv_ma20);
         mTvKMa30 = (TextView) findViewById(R.id.view_kline_tv_ma30);
 
-        mIvRefresh = (ImageView) findViewById(R.id.kline_iv_refresh);
-        mTvEntity = (TextView) findViewById(R.id.kline_tv_entity);
+//        mIvRefresh = (ImageView) findViewById(R.id.kline_iv_refresh);
+//        mTvEntity = (TextView) findViewById(R.id.kline_tv_entity);
     }
 
     /**
      * 初始化上面的chart公共属性
      */
     private void initChartKline() {
+        mChartKline.setBackgroundColor(Color.rgb(50,50,50));//设置表格背景色
         mChartKline.setScaleEnabled(true);//启用图表缩放事件
-        mChartKline.setDrawBorders(true);//是否绘制边线
-        mChartKline.setBorderWidth(1);//边线宽度，单位dp
+//        mChartKline.setDrawBorders(true);//是否绘制边线
+//        mChartKline.setBorderWidth(1f);//边线宽度，单位dp
+//        mChartKline.setBorderColor(getResources().getColor(R.color.border_color));//边线颜色
         mChartKline.setDragEnabled(true);//启用图表拖拽事件
         mChartKline.setScaleYEnabled(false);//启用Y轴上的缩放
-        mChartKline.setBorderColor(getResources().getColor(R.color.border_color));//边线颜色
         mChartKline.setDescription("");//右下角对图表的描述信息
-        mChartKline.setMinOffset(0f);
+        mChartKline.setMinOffset(0f);//设置偏移量,类似与padding的效果，默认15f
         mChartKline.setExtraOffsets(0f, 0f, 0f, 3f);
+//        mChartKline.setMarkerView(new ContentMarkerView(this,R.layout.mark_view));
+//        mChartKline.setDrawMarkerViews(true);
 
         Legend lineChartLegend = mChartKline.getLegend();
         lineChartLegend.setEnabled(false);//是否绘制 Legend 图例
@@ -286,25 +294,40 @@ public class KLineActivity extends AppCompatActivity {
 
         //bar x y轴
         xAxisKline = mChartKline.getXAxis();
+
+        xAxisKline.setGridColor(line_color);//设置x轴的网格线颜色
+        xAxisKline.setAxisLineWidth(1.5f);//设置x轴的宽度
+        xAxisKline.setTextColor(Color.WHITE);//设置该轴刻度文本的颜色
+        xAxisKline.setTextSize(14);//设置该轴刻度文本的size
+        xAxisKline.setEnabled(true);//是否显示该轴
         xAxisKline.setDrawLabels(true); //是否显示X坐标轴上的刻度，默认是true
         xAxisKline.setDrawGridLines(false);//是否显示X坐标轴上的刻度竖线，默认是true
-        xAxisKline.setDrawAxisLine(false); //是否绘制坐标轴的线，即含有坐标的那条线，默认是true
+//        xAxisKline.setDrawAxisLine(false); //是否绘制坐标轴的线，即含有坐标的那条线，默认是true
         xAxisKline.enableGridDashedLine(10f, 10f, 0f);//虚线表示X轴上的刻度竖线(float lineLength, float spaceLength, float phase)三个参数，1.线长，2.虚线间距，3.虚线开始坐标
-        xAxisKline.setTextColor(getResources().getColor(R.color.text_color_common));//设置字的颜色
+//        xAxisKline.setTextColor(getResources().getColor(R.color.text_color_common));//设置字的颜色
         xAxisKline.setPosition(XAxis.XAxisPosition.BOTTOM);//设置值显示在什么位置
         xAxisKline.setAvoidFirstLastClipping(true);//设置首尾的值是否自动调整，避免被遮挡
 
         axisLeftKline = mChartKline.getAxisLeft();
-        axisLeftKline.setDrawGridLines(true);
-        axisLeftKline.setDrawAxisLine(false);
+        axisLeftKline.setDrawGridLines(true);//绘制网格线，默认为true
+        axisLeftKline.setDrawAxisLine(false);//是否显示该轴
         axisLeftKline.setDrawZeroLine(false);
         axisLeftKline.setDrawLabels(true);
         axisLeftKline.enableGridDashedLine(10f, 10f, 0f);
-        axisLeftKline.setTextColor(getResources().getColor(R.color.text_color_common));
+//        axisLeftKline.setTextColor(getResources().getColor(R.color.text_color_common));
 //        axisLeftKline.setGridColor(getResources().getColor(R.color.minute_grayLine));
         axisLeftKline.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
         axisLeftKline.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
         axisLeftKline.setSpaceTop(10);//距离顶部留白
+
+        axisLeftKline.setAxisLineWidth(1.5f);//设置该轴的宽度
+        axisLeftKline.setAxisLineColor(line_color);//设置该轴的颜色
+        axisLeftKline.setTextColor(Color.WHITE);//设置该轴刻度文本的颜色
+        axisLeftKline.setTextSize(14);//设置该轴刻度文本的size
+//        axisLeftKline.setSpaceTop(10);//距离顶部留白
+
+        axisLeftKline.setGridColor(line_color);//设置该轴的网格线颜色。
+        axisLeftKline.setGridLineWidth(1.5f);// 设置该轴网格线的宽度。
 
         axisRightKline = mChartKline.getAxisRight();
         axisRightKline.setDrawLabels(false);
@@ -312,32 +335,43 @@ public class KLineActivity extends AppCompatActivity {
         axisRightKline.setDrawAxisLine(false);
         axisRightKline.setLabelCount(4, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
 
-        mChartKline.setDragDecelerationEnabled(true);
-        mChartKline.setDragDecelerationFrictionCoef(0.2f);
+        mChartKline.setDragDecelerationEnabled(true);//作用就是手指滑动屏幕，离开后是否有惯性滚动
+        mChartKline.setDragDecelerationFrictionCoef(0.2f);//减速摩擦系数
 
-        mChartKline.animateXY(2000, 2000);
+        mChartKline.animateXY(1000, 1000);
     }
 
     /**
      * 初始化下面的chart公共属性
      */
     private void initChartVolume() {
-        mChartVolume.setDrawBorders(true);  //边框是否显示
-        mChartVolume.setBorderWidth(1);//边框的宽度，float类型，dp单位
-        mChartVolume.setBorderColor(getResources().getColor(R.color.border_color));//边框颜色
+        mChartVolume.setBackgroundColor(Color.rgb(50,50,50));//设置表格背景色
+        mChartVolume.setDrawBorders(false);  //边框是否显示
+//        mChartVolume.setBorderWidth(1);//边框的宽度，float类型，dp单位
+//        mChartVolume.setBorderColor(getResources().getColor(R.color.border_color));//边框颜色
         mChartVolume.setDescription(""); //图表默认右下方的描述，参数是String对象
         mChartVolume.setDragEnabled(true);// 是否可以拖拽
         mChartVolume.setScaleYEnabled(false); //是否可以缩放 仅y轴
-        mChartVolume.setMinOffset(3f);
+        mChartVolume.setMinOffset(0f);
         mChartVolume.setExtraOffsets(0f, 0f, 0f, 5f);
 
         Legend combinedchartLegend = mChartVolume.getLegend(); // 设置比例图标示，就是那个一组y的value的
         combinedchartLegend.setEnabled(false);//是否绘制比例图
 
+
+
         //bar x y轴
         xAxisVolume = mChartVolume.getXAxis();
-        xAxisVolume.setEnabled(false);
-//        xAxisVolume.setDrawLabels(false); //是否显示X坐标轴上的刻度，默认是true
+        xAxisVolume.setGridColor(line_color);//设置x轴的网格线颜色
+        xAxisVolume.setAxisLineWidth(1.5f);
+        xAxisVolume.setDrawLabels(false); //是否显示X坐标轴上的刻度，默认是true
+        xAxisVolume.setDrawGridLines(false);
+        xAxisVolume.setDrawAxisLine(true);
+        xAxisVolume.setPosition(XAxis.XAxisPosition.BOTTOM);//设置值显示在什么位置
+        xAxisVolume.setAxisLineWidth(1.5f);//设置x轴的宽度
+        xAxisVolume.setEnabled(true);
+
+
 //        xAxisVolume.setDrawGridLines(false);//是否显示X坐标轴上的刻度竖线，默认是true
 //        xAxisVolume.setDrawAxisLine(false); //是否绘制坐标轴的线，即含有坐标的那条线，默认是true
 //        xAxisVolume.enableGridDashedLine(10f, 10f, 0f);//虚线表示X轴上的刻度竖线(float lineLength, float spaceLength, float phase)三个参数，1.线长，2.虚线间距，3.虚线开始坐标
@@ -353,8 +387,12 @@ public class KLineActivity extends AppCompatActivity {
 //        axisLeftVolume.setShowOnlyMinMax(true);
         axisLeftVolume.setDrawLabels(true);
         axisLeftVolume.enableGridDashedLine(10f, 10f, 0f);
-        axisLeftVolume.setTextColor(getResources().getColor(R.color.text_color_common));
-//        axisLeftVolume.setGridColor(getResources().getColor(R.color.minute_grayLine));
+//        axisLeftVolume.setTextColor(getResources().getColor(R.color.text_color_common));
+        axisLeftVolume.setTextColor(Color.WHITE);
+        axisLeftVolume.setTextSize(14);
+        axisLeftVolume.setGridColor(line_color);
+        axisLeftVolume.setAxisLineColor(line_color);
+        axisLeftVolume.setAxisLineWidth(1.5f);//设置该轴的宽度
         axisLeftVolume.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
         axisLeftVolume.setLabelCount(1, false); //第一个参数是Y轴坐标的个数，第二个参数是 是否不均匀分布，true是不均匀分布
         axisLeftVolume.setSpaceTop(0);//距离顶部留白
@@ -364,11 +402,12 @@ public class KLineActivity extends AppCompatActivity {
         axisRightVolume.setDrawLabels(false);
         axisRightVolume.setDrawGridLines(false);
         axisRightVolume.setDrawAxisLine(false);
+        axisRightVolume.setEnabled(false);
 
         mChartVolume.setDragDecelerationEnabled(true);
         mChartVolume.setDragDecelerationFrictionCoef(0.2f);
 
-        mChartVolume.animateXY(2000, 2000);
+        mChartVolume.animateXY(1000, 1000);
     }
 
     /**
@@ -410,43 +449,48 @@ public class KLineActivity extends AppCompatActivity {
         mChartCharts.setDragDecelerationEnabled(true);
         mChartCharts.setDragDecelerationFrictionCoef(0.2f);
 
-        mChartCharts.animateXY(2000, 2000);
+        mChartCharts.animateXY(1000, 1000);
+    }
+
+    public Highlight getHighlight(Highlight h,Highlight h1,float touchY){
+        Highlight highlight = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
+        highlight.setTouchY(touchY);
+        if (null == h1) {
+            highlight.setTouchYValue(0);
+        } else {
+            highlight.setTouchYValue(h1.getTouchYValue());
+        }
+        return highlight;
     }
 
     private void setChartListener() {
+        //----------------------------------多张表的滚动关联---------------------
         // 将K线控的滑动事件传递给交易量控件
-        mChartKline.setOnChartGestureListener(new CoupleChartGestureListener(mChartKline, new Chart[]{mChartVolume, mChartCharts}));
+//        mChartKline.setOnChartGestureListener(new CoupleChartGestureListener(mChartKline, new Chart[]{mChartVolume, mChartCharts}));
+        mChartKline.setOnChartGestureListener(new CoupleChartGestureListener(mChartKline, new Chart[]{mChartVolume}));
         // 将交易量控件的滑动事件传递给K线控件
-        mChartVolume.setOnChartGestureListener(new CoupleChartGestureListener(mChartVolume, new Chart[]{mChartKline, mChartCharts}));
+//        mChartVolume.setOnChartGestureListener(new CoupleChartGestureListener(mChartVolume, new Chart[]{mChartKline, mChartCharts}));
+        mChartVolume.setOnChartGestureListener(new CoupleChartGestureListener(mChartVolume, new Chart[]{mChartKline}));
 
-        mChartCharts.setOnChartGestureListener(new CoupleChartGestureListener(mChartCharts, new Chart[]{mChartKline, mChartVolume}));
+//        mChartCharts.setOnChartGestureListener(new CoupleChartGestureListener(mChartCharts, new Chart[]{mChartKline, mChartVolume}));
+
+        //----------------------------------多张表的高亮联动---------------------
 
         mChartKline.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                Highlight highlight = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
 
                 float touchY = h.getTouchY() - mChartKline.getHeight();
                 Highlight h1 = mChartVolume.getHighlightByTouchPoint(h.getXIndex(), touchY);
-                highlight.setTouchY(touchY);
-                if (null == h1) {
-                    highlight.setTouchYValue(0);
-                } else {
-                    highlight.setTouchYValue(h1.getTouchYValue());
-                }
+                //得到mChartVolume对应的Highlight
+                Highlight highlight = getHighlight(h,h1,touchY);
+                //手动设置
                 mChartVolume.highlightValues(new Highlight[]{highlight});
 
-                Highlight highlight2 = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
-
-                float touchY2 = h.getTouchY() - mChartKline.getHeight() - mChartVolume.getHeight();
-                Highlight h2 = mChartCharts.getHighlightByTouchPoint(h.getXIndex(), touchY2);
-                highlight2.setTouchY(touchY2);
-                if (null == h2) {
-                    highlight2.setTouchYValue(0);
-                } else {
-                    highlight2.setTouchYValue(h2.getTouchYValue());
-                }
-                mChartCharts.highlightValues(new Highlight[]{highlight2});
+//                float touchY2 = h.getTouchY() - mChartKline.getHeight() - mChartVolume.getHeight();
+//                Highlight h2 = mChartCharts.getHighlightByTouchPoint(h.getXIndex(), touchY2);
+//                Highlight highlight2 = getHighlight(h,h2,touchY2);
+//                mChartCharts.highlightValues(new Highlight[]{highlight2});
 
                 updateText(e.getXIndex());
             }
@@ -454,7 +498,7 @@ public class KLineActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected() {
                 mChartVolume.highlightValue(null);
-                mChartCharts.highlightValue(null);
+//                mChartCharts.highlightValue(null);
             }
         });
 
@@ -472,55 +516,18 @@ public class KLineActivity extends AppCompatActivity {
                     highlight.setTouchYValue(h1.getTouchYValue());
                 }
                 mChartKline.highlightValues(new Highlight[]{highlight});
-
-                Highlight highlight2 = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
-
-                float touchY2 = h.getTouchY() - mChartVolume.getHeight();
-                Highlight h2 = mChartCharts.getHighlightByTouchPoint(h.getXIndex(), touchY2);
-                highlight2.setTouchY(touchY2);
-                if (null == h2) {
-                    highlight2.setTouchYValue(0);
-                } else {
-                    highlight2.setTouchYValue(h2.getTouchYValue());
-                }
-                mChartCharts.highlightValues(new Highlight[]{highlight2});
-
-                updateText(e.getXIndex());
-            }
-
-            @Override
-            public void onNothingSelected() {
-                mChartKline.highlightValue(null);
-                mChartCharts.highlightValue(null);
-            }
-        });
-
-        mChartCharts.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-            @Override
-            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                Highlight highlight = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
-
-                float touchY = h.getTouchY() + mChartVolume.getHeight();
-                Highlight h1 = mChartVolume.getHighlightByTouchPoint(h.getXIndex(), touchY);
-                highlight.setTouchY(touchY);
-                if (null == h1) {
-                    highlight.setTouchYValue(0);
-                } else {
-                    highlight.setTouchYValue(h1.getTouchYValue());
-                }
-                mChartVolume.highlightValues(new Highlight[]{highlight});
-
-                Highlight highlight2 = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
-
-                float touchY2 = h.getTouchY() + mChartVolume.getHeight() + mChartKline.getHeight();
-                Highlight h2 = mChartKline.getHighlightByTouchPoint(h.getXIndex(), touchY2);
-                highlight2.setTouchY(touchY2);
-                if (null == h2) {
-                    highlight2.setTouchYValue(0);
-                } else {
-                    highlight2.setTouchYValue(h2.getTouchYValue());
-                }
-                mChartKline.highlightValues(new Highlight[]{highlight2});
+//
+//                Highlight highlight2 = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
+//
+//                float touchY2 = h.getTouchY() - mChartVolume.getHeight();
+//                Highlight h2 = mChartCharts.getHighlightByTouchPoint(h.getXIndex(), touchY2);
+//                highlight2.setTouchY(touchY2);
+//                if (null == h2) {
+//                    highlight2.setTouchYValue(0);
+//                } else {
+//                    highlight2.setTouchYValue(h2.getTouchYValue());
+//                }
+//                mChartCharts.highlightValues(new Highlight[]{highlight2});
 
                 updateText(e.getXIndex());
             }
@@ -528,9 +535,46 @@ public class KLineActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected() {
                 mChartKline.highlightValue(null);
-                mChartVolume.highlightValue(null);
+//                mChartCharts.highlightValue(null);
             }
         });
+
+//        mChartCharts.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+//            @Override
+//            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+//                Highlight highlight = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
+//
+//                float touchY = h.getTouchY() + mChartVolume.getHeight();
+//                Highlight h1 = mChartVolume.getHighlightByTouchPoint(h.getXIndex(), touchY);
+//                highlight.setTouchY(touchY);
+//                if (null == h1) {
+//                    highlight.setTouchYValue(0);
+//                } else {
+//                    highlight.setTouchYValue(h1.getTouchYValue());
+//                }
+//                mChartVolume.highlightValues(new Highlight[]{highlight});
+//
+//                Highlight highlight2 = new Highlight(h.getXIndex(), h.getValue(), h.getDataIndex(), h.getDataSetIndex());
+//
+//                float touchY2 = h.getTouchY() + mChartVolume.getHeight() + mChartKline.getHeight();
+//                Highlight h2 = mChartKline.getHighlightByTouchPoint(h.getXIndex(), touchY2);
+//                highlight2.setTouchY(touchY2);
+//                if (null == h2) {
+//                    highlight2.setTouchYValue(0);
+//                } else {
+//                    highlight2.setTouchYValue(h2.getTouchYValue());
+//                }
+//                mChartKline.highlightValues(new Highlight[]{highlight2});
+//
+//                updateText(e.getXIndex());
+//            }
+//
+//            @Override
+//            public void onNothingSelected() {
+//                mChartKline.highlightValue(null);
+//                mChartVolume.highlightValue(null);
+//            }
+//        });
     }
 
     /**
@@ -542,7 +586,7 @@ public class KLineActivity extends AppCompatActivity {
 
         setMarkerViewButtom(mData, mChartKline);
         setMarkerView(mData, mChartVolume);
-        setMarkerView(mData, mChartCharts);
+//        setMarkerView(mData, mChartCharts);
     }
 
 
@@ -574,7 +618,9 @@ public class KLineActivity extends AppCompatActivity {
         MyLeftMarkerView leftMarkerView = new MyLeftMarkerView(KLineActivity.this, R.layout.mymarkerview);
         MyHMarkerView hMarkerView = new MyHMarkerView(KLineActivity.this, R.layout.mymarkerview_line);
         MyBottomMarkerView bottomMarkerView = new MyBottomMarkerView(KLineActivity.this, R.layout.mymarkerview);
-        combinedChart.setMarker(leftMarkerView, bottomMarkerView, hMarkerView, mData);
+//        combinedChart.setMarker(leftMarkerView, bottomMarkerView, hMarkerView, mData);
+        ContentMarkerView contentMarkerView = new ContentMarkerView(KLineActivity.this,R.layout.mark_view);
+        combinedChart.setMarker(contentMarkerView,hMarkerView,mData);
     }
 
     private void setMarkerView(DataParse mData, MyCombinedChart combinedChart) {
@@ -628,13 +674,14 @@ public class KLineActivity extends AppCompatActivity {
         set.setDecreasingColor(getResources().getColor(R.color.decreasing_color));//设置开盘价高于收盘价的颜色
         set.setDecreasingPaintStyle(Paint.Style.FILL);
         set.setIncreasingColor(getResources().getColor(R.color.increasing_color));//设置开盘价地狱收盘价的颜色
-        set.setIncreasingPaintStyle(Paint.Style.STROKE);
+        set.setIncreasingPaintStyle(Paint.Style.FILL);
         set.setNeutralColor(getResources().getColor(R.color.decreasing_color));//设置开盘价等于收盘价的颜色
         set.setShadowColorSameAsCandle(true);
         set.setHighlightLineWidth(1f);
         set.setHighLightColor(getResources().getColor(R.color.marker_line_bg));
-        set.setDrawValues(true);
-        set.setValueTextColor(getResources().getColor(R.color.marker_text_bg));
+        set.setDrawValues(true);//是否显示值
+//        set.setValueTextColor(getResources().getColor(R.color.marker_text_bg));//数据值文本的颜色
+        set.setValueTextColor(Color.WHITE);//数据值文本的颜色
         CandleData candleData = new CandleData(mData.getXVals(), set);
 
         mData.initKLineMA(kLineDatas);
@@ -950,10 +997,10 @@ public class KLineActivity extends AppCompatActivity {
 
     private void setHandler(MyCombinedChart combinedChart) {
         final ViewPortHandler viewPortHandlerBar = combinedChart.getViewPortHandler();
-        viewPortHandlerBar.setMaximumScaleX(culcMaxscale(mData.getXVals().size()));
-        Matrix touchmatrix = viewPortHandlerBar.getMatrixTouch();
+        viewPortHandlerBar.setMaximumScaleX(culcMaxscale(mData.getXVals().size()));//设置X轴的最大缩放因子
+        Matrix touchmatrix = viewPortHandlerBar.getMatrixTouch();//返回用于平移和缩放的图表触摸矩阵  ViewPortHandler内部包含一个Matrix对象，拿这个Matrix就可以对Line做一些操作了
         final float xscale = 3;
-        touchmatrix.postScale(xscale, 1f);
+        touchmatrix.postScale(xscale, 1f);//图X轴方向放大3倍
     }
 
 

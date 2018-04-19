@@ -140,7 +140,7 @@ public class BarChartRenderer extends DataRenderer {
                     mRenderPaint.setStyle(Paint.Style.FILL);
                 } else {
                     mRenderPaint.setColor(dataSet.getColors().get(0));
-                    mRenderPaint.setStyle(Paint.Style.STROKE);
+                    mRenderPaint.setStyle(Paint.Style.FILL);
                 }
 
                 if (dataSet.getEntryForIndex(i).getClose() == 0f && dataSet.getEntryForIndex(i).getOpen() == 0f) {
